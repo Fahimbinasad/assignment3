@@ -1,10 +1,10 @@
 {
-  "name": "mern_project_structure",
+  "name": "assignment3",
   "version": "1.0.0",
   "description": "",
-  "main": "mern_project_structure/index.js",
+  "main": "assignment3/index.js",
   "scripts": {
-    "start": "mern_project_structure/index.js",
+    "start": "assignment3/index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],

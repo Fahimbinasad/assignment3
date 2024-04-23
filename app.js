@@ -29,27 +29,48 @@ app.set('etag', false);
 let URI="mongodb+srv://<username>:<password>@cluster0.jjwex8s.mongodb.net/CRUD5";
 let OPTION={user:'fahim',pass:'admin12+-',autoIndex:true};
 
+
+mongoose.connect(URI,OPTION).then((res)=>{
+    console.log("DB Success")
+}).catch((err)=>{
+    console.log(err)
+})
+
+
+app.set('etag', false);
+
+app.use("/api",router)
+app.use(express.static('client/dist'));
+
+// Add React Front End Routing
+app.get('*',function (req,res) {
+    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+})
+
+
+module.exports=app;
+
 //let uri = "mongodb://127.0.0.1:27017/wardshop";
 //let options = { user: "", pass: "", autoIndex: true };
-mongoose.connect(URI, OPTION)
-    .then(() => console.log('Mongo DB Connected Successfully!'));
+//mongoose.connect(URI, OPTION)
+   // .then(() => console.log('Mongo DB Connected Successfully!'));
 
 
 //======Api Routes=====// 
-app.use('/api/',router);
+//app.use('/api/',router);
 
 //=====Front End Connection====//
-app.use(express.static('client-site/dist'));
-app.get("*",(req,res)=>{
-res.sendFile(path.resolve(__dirname,'client-site','dist','index.html'));
-})
+//app.use(express.static('client-site/dist'));
+//app.get("*",(req,res)=>{
+//res.sendFile(path.resolve(__dirname,'client-site','dist','index.html'));
+//})
 
 //===undefined routes===//
-app.use('*', (req, res) => {
-    res.status(404).json({
-        status: "Fail",
-        data: "Undefined url"
-    });
-});
+//app.use('*', (req, res) => {
+    //res.status(404).json({
+      //  status: "Fail",
+     //   data: "Undefined url"
+  //  });
+//});
 
-module.exports = app
+//module.exports = app
